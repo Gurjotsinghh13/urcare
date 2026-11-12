@@ -27,27 +27,27 @@ export async function GET() {
 
   // Monthly trends (Last 6 months)
   const monthlyTrends = [
-    { month: 'Jun', admissions: 34, recoveries: 28, deaths: 5, occupancyRate: 72 },
-    { month: 'Jul', admissions: 42, recoveries: 36, deaths: 6, occupancyRate: 85 },
-    { month: 'Aug', admissions: 48, recoveries: 41, deaths: 7, occupancyRate: 91 },
-    { month: 'Sep', admissions: 38, recoveries: 32, deaths: 5, occupancyRate: 78 },
-    { month: 'Oct', admissions: 45, recoveries: 39, deaths: 6, occupancyRate: 88 },
-    { month: 'Nov', admissions: 20, recoveries: stats.recoveredCount, deaths: stats.deceasedCount, occupancyRate: parseFloat(((beds.filter(b => b.status === 'occupied').length / settings.capacity) * 100).toFixed(1)) },
+    { month: 'Jun', admissions: 31, recoveries: 27, deaths: 4, occupancyRate: 68 },
+    { month: 'Jul', admissions: 39, recoveries: 34, deaths: 5, occupancyRate: 77 },
+    { month: 'Aug', admissions: 53, recoveries: 46, deaths: 6, occupancyRate: 92 },
+    { month: 'Sep', admissions: 44, recoveries: 38, deaths: 5, occupancyRate: 83 },
+    { month: 'Oct', admissions: 49, recoveries: 43, deaths: 6, occupancyRate: 87 },
+    { month: 'Nov', admissions: 24, recoveries: stats.recoveredCount, deaths: stats.deceasedCount, occupancyRate: parseFloat(((beds.filter(b => b.status === 'occupied').length / settings.capacity) * 100).toFixed(1)) },
   ];
 
   // Age group mortality vs recovery
   const ageGroupDistribution = [
-    { ageGroup: '18-35', recoveries: 18, deaths: 0 },
-    { ageGroup: '36-50', recoveries: 15, deaths: 1 },
-    { ageGroup: '51-65', recoveries: 9, deaths: 3 },
-    { ageGroup: '66+', recoveries: 3, deaths: 4 },
+    { ageGroup: '18-35', recoveries: 22, deaths: 1 },
+    { ageGroup: '36-50', recoveries: 17, deaths: 2 },
+    { ageGroup: '51-65', recoveries: 11, deaths: 2 },
+    { ageGroup: '66+', recoveries: 5, deaths: 4 },
   ];
 
   return NextResponse.json({
     summary: {
       totalCapacity: settings.capacity,
       currentlyAdmitted: StoreAPI.getAdmittedPatients().length,
-      totalAdmissionsAllTime: 50 + patients.length,
+      totalAdmissionsAllTime: 54 + patients.length,
       sampleSize: stats.totalOutcomes,
       reportingPeriod: 'All Historical & Active Cohort (2026)',
       benchmarks: {

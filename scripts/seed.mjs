@@ -169,6 +169,36 @@ async function seed() {
     console.log('✓ Facility settings confirmed.');
   }
 
+  // 4. Provision 20 Unique Demo Patients
+  console.log('\n--- 4. Provisioning 20 Demo Patients ---');
+  const patientSeeds = [
+    { patient_code: 'URC-5201', full_name: 'Evelyn Harper', age: 47, gender: 'F', status: 'admitted', medical_history: 'Mild allergic rhinitis, non-smoker' },
+    { patient_code: 'URC-5202', full_name: 'Julian Bradley', age: 31, gender: 'M', status: 'admitted', medical_history: 'No prior chronic conditions' },
+    { patient_code: 'URC-5203', full_name: 'Amara Okonjo', age: 36, gender: 'F', status: 'admitted', medical_history: 'Prior gestational diabetes, diet controlled' },
+    { patient_code: 'URC-5204', full_name: 'Vikram Singhania', age: 58, gender: 'M', status: 'admitted', medical_history: 'Mild hypertension, ACE inhibitor therapy' },
+    { patient_code: 'URC-5205', full_name: 'Seraphina Rossi', age: 29, gender: 'F', status: 'admitted', medical_history: 'Acute febrile viral syndrome, productive cough' },
+    { patient_code: 'URC-5206', full_name: 'Henrik Lindqvist', age: 63, gender: 'M', status: 'admitted', medical_history: 'Moderate chronic bronchitis, higher clinical vulnerability' },
+    { patient_code: 'URC-5207', full_name: 'Talia Al-Hashemi', age: 26, gender: 'F', status: 'admitted', medical_history: 'Mild pharyngitis and myalgia' },
+    { patient_code: 'URC-5208', full_name: 'Caleb Montgomery', age: 41, gender: 'M', status: 'admitted', medical_history: 'High-risk contact exposure quarantine, asymptomatic' },
+    { patient_code: 'URC-5209', full_name: 'Linnea Bergstrom', age: 33, gender: 'F', status: 'admitted', medical_history: 'Transferred from satellite triage center' },
+    { patient_code: 'URC-5210', full_name: 'Darius Sterling', age: 44, gender: 'M', status: 'discharge_eligible', medical_history: 'Afebrile for 4 days, clear breath sounds' },
+    { patient_code: 'URC-5211', full_name: 'Mei-Ling Zhou', age: 52, gender: 'F', status: 'discharge_eligible', medical_history: 'Normalized vital signs, ambulatory' },
+    { patient_code: 'URC-5212', full_name: 'Alexander Brooks', age: 38, gender: 'M', status: 'discharge_approved', medical_history: 'Clinical review signed off by Dr. Vance, awaiting bed release' },
+    { patient_code: 'URC-5213', full_name: 'Camila Fernandez', age: 46, gender: 'F', status: 'discharge_approved', medical_history: '5 days afebrile, cleared for home release' },
+    { patient_code: 'URC-5214', full_name: 'Zachary Cole', age: 35, gender: 'M', status: 'discharged', medical_history: 'Full recovery, negative PCR test, released yesterday' },
+    { patient_code: 'URC-5215', full_name: 'Miriam Goldmann', age: 59, gender: 'F', status: 'discharged', medical_history: 'Safe discharge with follow-up instructions' },
+    { patient_code: 'URC-5216', full_name: 'Rohan Deshmukh', age: 32, gender: 'M', status: 'discharged', medical_history: 'Discharged 2 days ago' },
+    { patient_code: 'URC-5217', full_name: 'Ingrid Halvorsen', age: 64, gender: 'F', status: 'discharged', medical_history: 'Discharged 4 days ago after 7-day observation' },
+    { patient_code: 'URC-5218', full_name: 'Cornelius Vanderbilt IV', age: 81, gender: 'M', status: 'deceased', medical_history: 'Acute respiratory distress with multiorgan failure' },
+    { patient_code: 'URC-5219', full_name: 'Sienna Walker', age: 30, gender: 'F', status: 'admitted', medical_history: 'Day 2 afebrile, improving comfortably' },
+    { patient_code: 'URC-5220', full_name: 'Mateo Gutierrez', age: 53, gender: 'M', status: 'admitted', medical_history: 'Day 1 afebrile, vitals normalizing' },
+  ];
+
+  for (const pat of patientSeeds) {
+    await supabase.from('patients').upsert(pat, { onConflict: 'patient_code' });
+  }
+  console.log('✓ 20 patients synchronized with unique demographics.');
+
   console.log('\n======================================================');
   console.log('🎉 Seed Process Complete! All 4 Demo Accounts Ready.');
   console.log('======================================================\n');

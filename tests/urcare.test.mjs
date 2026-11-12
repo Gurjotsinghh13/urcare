@@ -123,7 +123,7 @@ test('5. Missing reading day breaks streak and fever resets streak', () => {
 test('6. Nurse can record temperature and duplicate routine entry for today is blocked', () => {
   resetStore();
   const nurse = StoreAPI.getUserByEmail('nurse@urcare.demo');
-  const patient = StoreAPI.getPatientById('p-7'); // Chloe Dubois (pending temp)
+  const patient = StoreAPI.getPatientById('p-7'); // Talia Al-Hashemi (pending temp)
 
   // First routine measurement succeeds
   const first = StoreAPI.recordTemperature({
@@ -157,7 +157,7 @@ test('6. Nurse can record temperature and duplicate routine entry for today is b
 test('7. Workflow Constraint: Doctor CANNOT complete visit before nurse records temperature', () => {
   resetStore();
   const doctor = StoreAPI.getUserByEmail('doctor@urcare.demo');
-  const patient = StoreAPI.getPatientById('p-8'); // James Wilson (no temp today)
+  const patient = StoreAPI.getPatientById('p-8'); // Caleb Montgomery (no temp today)
 
   // Visiting before nurse records temp fails
   assert.throws(() => {
@@ -198,7 +198,7 @@ test('9. Discharge workflow: Doctor approves, Admin finalizes, Bed is released',
   const admin = StoreAPI.getUserByEmail('admin@urcare.demo');
   const doctor = StoreAPI.getUserByEmail('doctor@urcare.demo');
 
-  // Patient 12 (Thomas Wright) is in Bed 12 with doctor approval pending admin finalization
+  // Patient 12 (Alexander Brooks) is in Bed 67 with doctor approval pending admin finalization
   const patient = StoreAPI.getPatientById('p-12');
   const bedNum = patient.bed_number;
   assert.equal(patient.status, 'discharge_approved');
