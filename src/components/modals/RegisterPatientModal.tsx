@@ -90,7 +90,7 @@ export function RegisterPatientModal({
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md text-xs text-red-700 font-medium">
+          <div className="p-3 bg-[#FAF8F8] border border-[#C04444] rounded-md text-xs text-[#C04444] font-medium">
             {error}
           </div>
         )}
@@ -119,11 +119,11 @@ export function RegisterPatientModal({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-slate-700">Gender *</label>
+            <label className="block text-xs font-medium text-[#202124]">Gender *</label>
             <select
               value={gender}
               onChange={(e) => setGender(e.target.value as any)}
-              className="w-full h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full h-9 rounded-md border border-[#EAE3E5] bg-white px-3 py-1 text-sm text-[#202124] focus:outline-none focus:border-[#E88770] focus:ring-1 focus:ring-[#E88770] transition-colors"
             >
               <option value="M">Male</option>
               <option value="F">Female</option>
@@ -132,18 +132,18 @@ export function RegisterPatientModal({
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-slate-700">
+            <label className="block text-xs font-medium text-[#202124]">
               Assign Quarantine Bed * ({availableBeds.length} available)
             </label>
             {availableBeds.length === 0 ? (
-              <div className="p-2 text-xs text-red-600 font-medium bg-red-50 rounded border border-red-200">
+              <div className="p-2 text-xs text-[#C04444] font-medium bg-[#FAF8F8] rounded border border-[#EAE3E5]">
                 Facility full (74/74 beds occupied)
               </div>
             ) : (
               <select
                 value={bedNumber}
                 onChange={(e) => setBedNumber(Number(e.target.value))}
-                className="w-full h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full h-9 rounded-md border border-[#EAE3E5] bg-white px-3 py-1 text-sm text-[#202124] focus:outline-none focus:border-[#E88770] focus:ring-1 focus:ring-[#E88770] transition-colors"
                 required
               >
                 {availableBeds.map((b) => (
@@ -164,28 +164,28 @@ export function RegisterPatientModal({
         />
 
         <div className="space-y-1.5">
-          <label className="block text-xs font-medium text-slate-700">Medical History & Known Comorbidities</label>
+          <label className="block text-xs font-medium text-[#202124]">Medical History & Known Comorbidities</label>
           <textarea
             rows={2}
             value={medicalHistory}
             onChange={(e) => setMedicalHistory(e.target.value)}
             placeholder="e.g. Asthma, hypertension, penicillin allergy"
-            className="w-full rounded-md border border-slate-300 p-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-md border border-[#EAE3E5] p-2.5 text-xs text-[#202124] focus:outline-none focus:border-[#E88770] focus:ring-1 focus:ring-[#E88770] bg-white transition-colors"
           />
         </div>
 
         <div className="space-y-1.5">
-          <label className="block text-xs font-medium text-slate-700">Admission Notes & Triage Presentation</label>
+          <label className="block text-xs font-medium text-[#202124]">Admission Notes & Triage Presentation</label>
           <textarea
             rows={2}
             value={admissionNotes}
             onChange={(e) => setAdmissionNotes(e.target.value)}
             placeholder="e.g. Day 2 of onset. Moderate dry cough. Transferred from community clinic."
-            className="w-full rounded-md border border-slate-300 p-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-md border border-[#EAE3E5] p-2.5 text-xs text-[#202124] focus:outline-none focus:border-[#E88770] focus:ring-1 focus:ring-[#E88770] bg-white transition-colors"
           />
         </div>
 
-        <div className="flex justify-end gap-2.5 pt-2 border-t border-slate-100">
+        <div className="flex justify-end gap-2.5 pt-2 border-t border-[#EAE3E5]">
           <Button type="button" variant="outline" size="sm" onClick={onClose}>
             Cancel
           </Button>

@@ -2,16 +2,16 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { ShieldAlert, RefreshCw, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { RefreshCw, ChevronDown, CheckCircle2, Menu } from 'lucide-react';
 import { NotificationsDropdown } from './NotificationsDropdown';
 import { UserProfile } from '@/lib/types';
-import { getRoleBadgeColor } from '@/lib/utils';
 
 interface NavbarProps {
   user: UserProfile;
+  onToggleMobileMenu?: () => void;
 }
 
-export function Navbar({ user }: NavbarProps) {
+export function Navbar({ user, onToggleMobileMenu }: NavbarProps) {
   const router = useRouter();
   const [isSwitching, setIsSwitching] = React.useState(false);
   const [showRoleMenu, setShowRoleMenu] = React.useState(false);
@@ -56,51 +56,60 @@ export function Navbar({ user }: NavbarProps) {
   };
 
   return (
-    <header className="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-6 sticky top-0 z-30 shadow-xs">
-      {/* Left tag & Facility Info */}
+    <header className="h-16 border-b border-[#EAE3E5] bg-white flex items-center justify-between px-4 sm:px-6 sticky top-0 z-30 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+      {/* Left controls & Facility Status */}
       <div className="flex items-center gap-3">
-        <div className="text-xs font-medium text-slate-500">
-          Facility: <span className="font-semibold text-slate-800">URCARE Quarantine Center</span>
+        {/* Mobile menu button */}
+        <button
+          onClick={onToggleMobileMenu}
+          className="lg:hidden p-1.5 rounded-md text-[#6B7280] hover:text-[#202124] hover:bg-[#FAF8F8] border border-[#EAE3E5]"
+          title="Open menu"
+        >
+          <Menu className="w-4 h-4" />
+        </button>
+
+        <div className="text-xs font-medium text-[#6B7280]">
+          Facility: <span className="font-semibold text-[#202124]">URCARE Quarantine Center</span>
         </div>
-        <span className="text-slate-300">|</span>
-        <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-600 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        <span className="text-[#EAE3E5] hidden sm:inline">|</span>
+        <div className="hidden sm:flex items-center gap-1.5 text-xs text-[#202124] bg-[#FAF8F8] px-2.5 py-1 rounded-md border border-[#EAE3E5]">
+          <span className="w-2 h-2 rounded-full bg-[#27805B]" />
           <span>74 Bed Capacity</span>
         </div>
       </div>
 
       {/* Right controls */}
-      <div className="flex items-center gap-3">
-        {/* Quick Role Switcher for Campus Assessment */}
+      <div className="flex items-center gap-2.5">
+        {/* Role Switcher */}
         <div className="relative">
           <button
             onClick={() => setShowRoleMenu(!showRoleMenu)}
             disabled={isSwitching}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium border border-[#EAE3E5] bg-[#FAF8F8] hover:bg-[#F7F0F1] text-[#202124] transition-colors"
           >
-            <span className="text-slate-400">Role:</span>
-            <span className="font-semibold capitalize text-slate-900">{user.role}</span>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-[#6B7280]">Role:</span>
+            <span className="font-semibold capitalize text-[#202124]">{user.role}</span>
+            <ChevronDown className="w-3.5 h-3.5 text-[#6B7280]" />
           </button>
 
           {showRoleMenu && (
-            <div className="absolute right-0 mt-2 w-56 rounded-lg bg-white border border-slate-200 shadow-xl z-50 p-1.5 animate-in fade-in zoom-in-95 duration-150">
-              <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            <div className="absolute right-0 mt-2 w-56 rounded-xl bg-white border border-[#EAE3E5] shadow-[0_10px_25px_-5px_rgba(32,33,36,0.1)] z-50 p-1.5 animate-in fade-in zoom-in-95 duration-150">
+              <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#6B7280]">
                 Switch Assessment Account
               </div>
               {demoRoles.map((r) => (
                 <button
                   key={r.role}
                   onClick={() => handleRoleSwitch(r.role)}
-                  className={`w-full text-left px-2.5 py-1.5 rounded text-xs flex items-center justify-between transition-colors ${
-                    user.role === r.role ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-50'
+                  className={`w-full text-left px-2.5 py-1.5 rounded-md text-xs flex items-center justify-between transition-colors ${
+                    user.role === r.role ? 'bg-[#FCEEF1] text-[#202124] font-semibold' : 'text-[#202124] hover:bg-[#FAF8F8]'
                   }`}
                 >
                   <div>
                     <div>{r.label}</div>
-                    <div className="text-[10px] text-slate-400">{r.email}</div>
+                    <div className="text-[10px] text-[#6B7280]">{r.email}</div>
                   </div>
-                  {user.role === r.role && <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />}
+                  {user.role === r.role && <CheckCircle2 className="w-3.5 h-3.5 text-[#E88770]" />}
                 </button>
               ))}
             </div>
@@ -111,10 +120,10 @@ export function Navbar({ user }: NavbarProps) {
         {user.role === 'admin' && (
           <button
             onClick={handleResetData}
-            title="Restore Original Demo Data"
-            className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-transparent hover:border-slate-200"
+            title="Restore Assessment Data"
+            className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium text-[#6B7280] hover:text-[#202124] hover:bg-[#FAF8F8] transition-colors border border-transparent hover:border-[#EAE3E5]"
           >
-            <RefreshCw className="w-3.5 h-3.5 text-slate-400" />
+            <RefreshCw className="w-3.5 h-3.5 text-[#6B7280]" />
             <span>Reset Demo</span>
           </button>
         )}

@@ -54,24 +54,22 @@ export function NotificationsDropdown() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
+        className="relative p-2 rounded-md text-[#6B7280] hover:text-[#202124] hover:bg-[#F7F0F1] transition-colors"
         title="Notifications"
       >
-        <Bell className="w-5 h-5" />
+        <Bell className="w-4 h-4" />
         {unreadCount > 0 && (
-          <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[10px] font-bold text-white ring-2 ring-white">
-            {unreadCount > 9 ? '9+' : unreadCount}
-          </span>
+          <span className="absolute top-1.5 right-1.5 flex h-2 w-2 rounded-full bg-[#E88770] ring-2 ring-white" />
         )}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-lg bg-white border border-slate-200 shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-          <div className="flex items-center justify-between p-3.5 border-b border-slate-100 bg-slate-50/50">
+        <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-xl bg-white border border-[#EAE3E5] shadow-[0_10px_25px_-5px_rgba(32,33,36,0.1)] z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+          <div className="flex items-center justify-between p-3.5 border-b border-[#EAE3E5]/70 bg-[#FAF8F8]/60">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-slate-900">Notifications</span>
+              <span className="text-xs font-semibold text-[#202124]">Notifications</span>
               {unreadCount > 0 && (
-                <span className="text-[11px] bg-red-50 text-red-700 px-1.5 py-0.2 rounded font-semibold border border-red-200">
+                <span className="text-[10px] bg-[#FCEEF1] text-[#E88770] px-1.5 py-0.2 rounded font-semibold border border-[#F4C7D3]">
                   {unreadCount} new
                 </span>
               )}
@@ -79,35 +77,35 @@ export function NotificationsDropdown() {
             {unreadCount > 0 && (
               <button
                 onClick={markAllRead}
-                className="text-xs text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1"
+                className="text-[11px] text-[#E88770] hover:text-[#D97660] font-medium flex items-center gap-1"
               >
-                <Check className="w-3.5 h-3.5" />
+                <Check className="w-3 h-3" />
                 Mark all read
               </button>
             )}
           </div>
 
-          <div className="max-h-96 overflow-y-auto divide-y divide-slate-100">
+          <div className="max-h-80 overflow-y-auto divide-y divide-[#EAE3E5]/60">
             {notifications.length === 0 ? (
-              <div className="p-8 text-center text-xs text-slate-400">No active notifications</div>
+              <div className="p-8 text-center text-xs text-[#6B7280]">No active notifications</div>
             ) : (
               notifications.map((n) => (
                 <div
                   key={n.id}
-                  className={`p-3.5 hover:bg-slate-50 transition-colors ${!n.is_read ? 'bg-blue-50/30' : ''}`}
+                  className={`p-3.5 hover:bg-[#FAF8F8] transition-colors ${!n.is_read ? 'bg-[#FCEEF1]/25' : ''}`}
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-xs font-semibold text-slate-900">{n.title}</p>
-                    <span className="text-[10px] text-slate-400 whitespace-nowrap">
+                    <p className="text-xs font-semibold text-[#202124]">{n.title}</p>
+                    <span className="text-[10px] text-[#6B7280] whitespace-nowrap">
                       {formatTime(n.created_at)}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">{n.message}</p>
+                  <p className="text-xs text-[#6B7280] mt-1 leading-relaxed">{n.message}</p>
                   {n.link && (
                     <Link
                       href={n.link}
                       onClick={() => setIsOpen(false)}
-                      className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-600 hover:text-blue-800 mt-2"
+                      className="inline-flex items-center gap-1 text-[11px] font-medium text-[#E88770] hover:text-[#D97660] mt-1.5"
                     >
                       View details <ExternalLink className="w-3 h-3" />
                     </Link>

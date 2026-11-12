@@ -1,16 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
 import { 
-  Building2, 
   Bed, 
   TrendingUp, 
-  Download, 
   AlertTriangle, 
-  CheckCircle2, 
   Clock,
-  ShieldCheck,
   FileSpreadsheet
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,10 +18,9 @@ interface ManagerDashboardProps {
 }
 
 export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
-  const { occupancy, vitals, rounds, discharges, outcomes, today } = data;
+  const { occupancy, vitals, rounds, outcomes, today } = data;
 
   const handleExportCSV = () => {
-    // Generate CSV export of operational metrics
     const rows = [
       ['Metric', 'Value', 'Benchmark / Target'],
       ['Total Facility Capacity', `${occupancy.totalCapacity} Beds`, '74 Fixed'],
@@ -55,13 +49,13 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-lg border border-[#EAE3E5]">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold text-slate-900 tracking-tight">Facility Operations & Governance</h1>
+            <h1 className="text-xl font-bold text-[#202124] tracking-tight">Facility Operations & Governance</h1>
             <Badge variant="outline" className="text-[10px]">Read-Only Executive View</Badge>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[#6B7280] mt-1">
             Audit capacity utilization, quarantine bed availability, clinical adherence, and outcome KPIs.
           </p>
         </div>
@@ -69,8 +63,8 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
           <Button size="sm" variant="outline" onClick={onRefresh}>
             Refresh
           </Button>
-          <Button size="sm" onClick={handleExportCSV} className="gap-1.5 bg-slate-900 hover:bg-slate-800 text-white">
-            <FileSpreadsheet className="w-4 h-4" />
+          <Button size="sm" onClick={handleExportCSV} className="gap-1.5">
+            <FileSpreadsheet className="w-3.5 h-3.5" />
             Export Operational CSV
           </Button>
         </div>
@@ -79,37 +73,37 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Capacity */}
-        <Card className="hover:border-slate-300 transition-colors">
+        <Card>
           <CardContent className="p-5">
-            <div className="flex items-center justify-between text-slate-500 mb-2">
+            <div className="flex items-center justify-between text-[#6B7280] mb-2">
               <span className="text-xs font-medium">Facility Capacity</span>
-              <Bed className="w-4 h-4 text-blue-600" />
+              <Bed className="w-4 h-4 text-[#E88770]" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-slate-900">{occupancy.occupied}</span>
-              <span className="text-xs text-slate-400">/ {occupancy.totalCapacity} Total Beds</span>
+              <span className="text-2xl font-bold text-[#202124]">{occupancy.occupied}</span>
+              <span className="text-xs text-[#6B7280]">/ {occupancy.totalCapacity} Total Beds</span>
             </div>
-            <div className="mt-3 flex justify-between text-[11px] text-slate-500">
+            <div className="mt-3 flex justify-between text-[11px] text-[#6B7280]">
               <span>{occupancy.occupancyRate}% Utilization</span>
-              <span className="text-emerald-600 font-semibold">{occupancy.available} Available</span>
+              <span className="text-[#27805B] font-semibold">{occupancy.available} Available</span>
             </div>
           </CardContent>
         </Card>
 
         {/* Recovery Rate */}
-        <Card className="hover:border-slate-300 transition-colors">
+        <Card>
           <CardContent className="p-5">
-            <div className="flex items-center justify-between text-slate-500 mb-2">
+            <div className="flex items-center justify-between text-[#6B7280] mb-2">
               <span className="text-xs font-medium">Recovery Rate</span>
-              <TrendingUp className="w-4 h-4 text-emerald-600" />
+              <TrendingUp className="w-4 h-4 text-[#27805B]" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-slate-900">{outcomes.recoveryRate}%</span>
-              <span className="text-xs text-slate-500">Benchmark: 85.0%</span>
+              <span className="text-2xl font-bold text-[#202124]">{outcomes.recoveryRate}%</span>
+              <span className="text-xs text-[#6B7280]">Target: 85.0%</span>
             </div>
             <div className="mt-3 flex items-center justify-between text-[11px]">
-              <span className="text-slate-500">{outcomes.recoveredCount} Recovered</span>
-              <span className="text-emerald-700 font-medium bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200">
+              <span className="text-[#6B7280]">{outcomes.recoveredCount} Recovered</span>
+              <span className="text-[#27805B] font-medium bg-[#F0F7F4] px-1.5 py-0.2 rounded border border-[#D1E7DD]">
                 Meets Benchmark
               </span>
             </div>
@@ -117,19 +111,19 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
         </Card>
 
         {/* Mortality Rate */}
-        <Card className="hover:border-slate-300 transition-colors">
+        <Card>
           <CardContent className="p-5">
-            <div className="flex items-center justify-between text-slate-500 mb-2">
+            <div className="flex items-center justify-between text-[#6B7280] mb-2">
               <span className="text-xs font-medium">Mortality Rate</span>
-              <AlertTriangle className="w-4 h-4 text-slate-600" />
+              <AlertTriangle className="w-4 h-4 text-[#6B7280]" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-slate-900">{outcomes.mortalityRate}%</span>
-              <span className="text-xs text-slate-500">Benchmark: ≤ 15.0%</span>
+              <span className="text-2xl font-bold text-[#202124]">{outcomes.mortalityRate}%</span>
+              <span className="text-xs text-[#6B7280]">Target: ≤ 15.0%</span>
             </div>
             <div className="mt-3 flex items-center justify-between text-[11px]">
-              <span className="text-slate-500">{outcomes.deceasedCount} Deceased</span>
-              <span className="text-slate-700 font-medium bg-slate-100 px-1.5 py-0.2 rounded">
+              <span className="text-[#6B7280]">{outcomes.deceasedCount} Deceased</span>
+              <span className="text-[#6B7280] font-medium bg-[#FAF8F8] px-1.5 py-0.2 rounded border border-[#EAE3E5]">
                 Within Expected
               </span>
             </div>
@@ -137,19 +131,19 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
         </Card>
 
         {/* Average LOS */}
-        <Card className="hover:border-slate-300 transition-colors">
+        <Card>
           <CardContent className="p-5">
-            <div className="flex items-center justify-between text-slate-500 mb-2">
+            <div className="flex items-center justify-between text-[#6B7280] mb-2">
               <span className="text-xs font-medium">Average Length of Stay</span>
-              <Clock className="w-4 h-4 text-purple-600" />
+              <Clock className="w-4 h-4 text-[#E88770]" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-slate-900">{outcomes.averageLOSDays}</span>
-              <span className="text-xs text-slate-400">Days per Patient</span>
+              <span className="text-2xl font-bold text-[#202124]">{outcomes.averageLOSDays}</span>
+              <span className="text-xs text-[#6B7280]">Days / Episode</span>
             </div>
-            <div className="mt-3 flex justify-between text-[11px] text-slate-500">
+            <div className="mt-3 flex justify-between text-[11px] text-[#6B7280]">
               <span>Cohort: {outcomes.totalOutcomes} Discharges</span>
-              <span className="text-purple-600 font-medium">Standard Protocol</span>
+              <span className="text-[#202124] font-medium">Protocol Standard</span>
             </div>
           </CardContent>
         </Card>
@@ -160,31 +154,31 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
         <Card>
           <CardHeader>
             <CardTitle>Daily Clinical Workflow Adherence</CardTitle>
-            <span className="text-xs text-slate-500">Mandatory daily measurements audit</span>
+            <span className="text-xs text-[#6B7280]">Mandatory daily measurements audit</span>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-3">
+            <div className="p-4 rounded-md bg-[#FAF8F8] border border-[#EAE3E5] space-y-2.5">
               <div className="flex justify-between items-center text-xs">
-                <span className="font-semibold text-slate-800">Nursing Temperature Completion</span>
-                <span className="font-bold text-slate-900">{vitals.completed} / {data.admittedPatientsCount} ({vitals.completionRate}%)</span>
+                <span className="font-semibold text-[#202124]">Nursing Temperature Completion</span>
+                <span className="font-bold text-[#202124]">{vitals.completed} / {data.admittedPatientsCount} ({vitals.completionRate}%)</span>
               </div>
-              <div className="w-full bg-slate-200 rounded-full h-2">
-                <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${vitals.completionRate}%` }} />
+              <div className="w-full bg-white border border-[#EAE3E5] rounded-full h-1.5">
+                <div className="bg-[#E88770] h-1.5 rounded-full" style={{ width: `${vitals.completionRate}%` }} />
               </div>
             </div>
 
-            <div className="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-3">
+            <div className="p-4 rounded-md bg-[#FAF8F8] border border-[#EAE3E5] space-y-2.5">
               <div className="flex justify-between items-center text-xs">
-                <span className="font-semibold text-slate-800">Doctor Rounds Completion</span>
-                <span className="font-bold text-slate-900">{rounds.completed} / {data.admittedPatientsCount} ({rounds.completionRate}%)</span>
+                <span className="font-semibold text-[#202124]">Doctor Rounds Completion</span>
+                <span className="font-bold text-[#202124]">{rounds.completed} / {data.admittedPatientsCount} ({rounds.completionRate}%)</span>
               </div>
-              <div className="w-full bg-slate-200 rounded-full h-2">
-                <div className="bg-indigo-600 h-2 rounded-full" style={{ width: `${rounds.completionRate}%` }} />
+              <div className="w-full bg-white border border-[#EAE3E5] rounded-full h-1.5">
+                <div className="bg-[#F4C7D3] h-1.5 rounded-full" style={{ width: `${rounds.completionRate}%` }} />
               </div>
             </div>
 
-            <div className="p-3 bg-blue-50 border border-blue-200 rounded-md text-xs text-blue-800">
-              <span className="font-semibold">Workflow Rule Verification:</span> No physician can complete a routine patient round prior to morning temperature entry by nursing staff. System enforcement is active.
+            <div className="p-3 bg-[#FAF8F8] border border-[#EAE3E5] rounded-md text-xs text-[#6B7280]">
+              <span className="font-semibold text-[#202124]">Workflow Rule Verification:</span> No physician can complete a routine patient round prior to morning temperature entry by nursing staff. System enforcement is active.
             </div>
           </CardContent>
         </Card>
@@ -192,23 +186,23 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
         <Card>
           <CardHeader>
             <CardTitle>Quarantine Bed Distribution (74 Beds)</CardTitle>
-            <span className="text-xs text-slate-500">Capacity breakdown by ward unit</span>
+            <span className="text-xs text-[#6B7280]">Capacity breakdown by ward unit</span>
           </CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent className="space-y-2.5">
             {[
               { ward: 'Ward A (Respiratory)', range: 'Beds 1 - 20', total: 20, occupied: 7 },
               { ward: 'Ward B (Observation)', range: 'Beds 21 - 40', total: 20, occupied: 5 },
               { ward: 'Ward C (Step-down)', range: 'Beds 41 - 60', total: 20, occupied: 3 },
               { ward: 'Ward D (Isolation)', range: 'Beds 61 - 74', total: 14, occupied: 1 },
             ].map((w) => (
-              <div key={w.ward} className="p-3 rounded-lg border border-slate-200 bg-white flex items-center justify-between text-xs">
+              <div key={w.ward} className="p-3 rounded-md border border-[#EAE3E5] bg-[#FAF8F8] flex items-center justify-between text-xs">
                 <div>
-                  <div className="font-semibold text-slate-900">{w.ward}</div>
-                  <div className="text-[11px] text-slate-500">{w.range}</div>
+                  <div className="font-semibold text-[#202124]">{w.ward}</div>
+                  <div className="text-[11px] text-[#6B7280]">{w.range}</div>
                 </div>
                 <div className="text-right">
-                  <div className="font-semibold text-slate-800">{w.occupied} / {w.total} Occupied</div>
-                  <div className="text-[11px] text-emerald-600">{w.total - w.occupied} Beds Available</div>
+                  <div className="font-semibold text-[#202124]">{w.occupied} / {w.total} Occupied</div>
+                  <div className="text-[11px] text-[#27805B]">{w.total - w.occupied} Beds Available</div>
                 </div>
               </div>
             ))}

@@ -97,23 +97,23 @@ export function DischargeModal({
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md text-xs text-red-700 font-medium">
+          <div className="p-3 bg-[#FAF8F8] border border-[#C04444] rounded-md text-xs text-[#C04444] font-medium">
             {error}
           </div>
         )}
 
         {/* Patient Status Overview */}
-        <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg space-y-2">
+        <div className="p-3.5 bg-[#FAF8F8] border border-[#EAE3E5] rounded-lg space-y-2">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-xs text-slate-500">Patient:</span>
-              <div className="text-sm font-semibold text-slate-900">
+              <span className="text-xs text-[#6B7280]">Patient:</span>
+              <div className="text-sm font-semibold text-[#202124]">
                 {patientName} ({patientCode}) {bedNumber ? `• Bed ${bedNumber}` : ''}
               </div>
             </div>
             <div className="text-right">
-              <span className="text-xs text-slate-500">Afebrile Streak:</span>
-              <div className="flex items-center gap-1 text-xs font-semibold text-emerald-700">
+              <span className="text-xs text-[#6B7280]">Afebrile Streak:</span>
+              <div className="flex items-center gap-1 text-xs font-semibold text-[#27805B]">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>{streakCount} Consecutive Days</span>
               </div>
@@ -125,21 +125,21 @@ export function DischargeModal({
           <>
             {/* Doctor Decision */}
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-700">Physician Clinical Decision</label>
+              <label className="block text-xs font-medium text-[#202124]">Physician Clinical Decision</label>
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setDoctorStatus('approved')}
                   className={`p-3 rounded-lg border text-left flex items-start gap-2.5 transition-all ${
                     doctorStatus === 'approved'
-                      ? 'border-blue-600 bg-blue-50/50 ring-1 ring-blue-600'
-                      : 'border-slate-200 hover:border-slate-300 bg-white'
+                      ? 'border-[#E88770] bg-[#FCEEF1] ring-1 ring-[#E88770]'
+                      : 'border-[#EAE3E5] hover:border-[#F4C7D3] bg-white'
                   }`}
                 >
-                  <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                  <ShieldCheck className={`w-4 h-4 shrink-0 mt-0.5 ${doctorStatus === 'approved' ? 'text-[#E88770]' : 'text-[#6B7280]'}`} />
                   <div>
-                    <div className="text-xs font-semibold text-slate-900">Approve Readiness</div>
-                    <div className="text-[11px] text-slate-500 mt-0.5">Patient is clinically fit for discharge</div>
+                    <div className="text-xs font-semibold text-[#202124]">Approve Readiness</div>
+                    <div className="text-[11px] text-[#6B7280] mt-0.5">Patient is clinically fit for discharge</div>
                   </div>
                 </button>
 
@@ -148,14 +148,14 @@ export function DischargeModal({
                   onClick={() => setDoctorStatus('deferred')}
                   className={`p-3 rounded-lg border text-left flex items-start gap-2.5 transition-all ${
                     doctorStatus === 'deferred'
-                      ? 'border-amber-600 bg-amber-50/50 ring-1 ring-amber-600'
-                      : 'border-slate-200 hover:border-slate-300 bg-white'
+                      ? 'border-[#B7791F] bg-[#FAF8F8] ring-1 ring-[#B7791F]'
+                      : 'border-[#EAE3E5] hover:border-[#F4C7D3] bg-white'
                   }`}
                 >
-                  <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <AlertTriangle className={`w-4 h-4 shrink-0 mt-0.5 ${doctorStatus === 'deferred' ? 'text-[#B7791F]' : 'text-[#6B7280]'}`} />
                   <div>
-                    <div className="text-xs font-semibold text-slate-900">Defer Discharge</div>
-                    <div className="text-[11px] text-slate-500 mt-0.5">Hold for further clinical observation</div>
+                    <div className="text-xs font-semibold text-[#202124]">Defer Discharge</div>
+                    <div className="text-[11px] text-[#6B7280] mt-0.5">Hold for further clinical observation</div>
                   </div>
                 </button>
               </div>
@@ -163,19 +163,19 @@ export function DischargeModal({
 
             {doctorStatus === 'approved' ? (
               <div className="space-y-1.5">
-                <label className="block text-xs font-medium text-slate-700">Clinical Justification & Notes</label>
+                <label className="block text-xs font-medium text-[#202124]">Clinical Justification & Notes</label>
                 <textarea
                   rows={3}
                   value={doctorNotes}
                   onChange={(e) => setDoctorNotes(e.target.value)}
                   placeholder="e.g. Asymptomatic, clear chest auscultation, 3 fever-free days verified. Approved for administrative discharge."
-                  className="w-full rounded-md border border-slate-300 p-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-md border border-[#EAE3E5] p-2.5 text-xs text-[#202124] focus:outline-none focus:border-[#E88770] focus:ring-1 focus:ring-[#E88770] bg-white transition-colors"
                   required
                 />
               </div>
             ) : (
               <div className="space-y-1.5">
-                <label className="block text-xs font-medium text-slate-700">Mandatory Deferral Reason *</label>
+                <label className="block text-xs font-medium text-[#202124]">Mandatory Deferral Reason *</label>
                 <Input
                   value={deferralReason}
                   onChange={(e) => setDeferralReason(e.target.value)}
@@ -188,24 +188,24 @@ export function DischargeModal({
         ) : (
           <>
             {/* Admin Finalize */}
-            <div className="p-3 bg-blue-50 border border-blue-200 rounded-md text-xs text-blue-800 leading-relaxed">
-              <span className="font-semibold">Bed Release Notice:</span> Finalizing this discharge will release Bed {bedNumber} back to the available bed pool and officially mark the patient’s outcome as Recovered.
+            <div className="p-3 bg-[#FCEEF1] border border-[#F4C7D3] rounded-md text-xs text-[#202124] leading-relaxed">
+              <span className="font-semibold text-[#E88770]">Bed Release Notice:</span> Finalizing this discharge will release Bed {bedNumber} back to the available bed pool and officially mark the patient’s outcome as Recovered.
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-slate-700">Administrative Discharge Summary *</label>
+              <label className="block text-xs font-medium text-[#202124]">Administrative Discharge Summary *</label>
               <textarea
                 rows={3}
                 value={dischargeSummary}
                 onChange={(e) => setDischargeSummary(e.target.value)}
-                className="w-full rounded-md border border-slate-300 p-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-md border border-[#EAE3E5] p-2.5 text-xs text-[#202124] focus:outline-none focus:border-[#E88770] focus:ring-1 focus:ring-[#E88770] bg-white transition-colors"
                 required
               />
             </div>
           </>
         )}
 
-        <div className="flex justify-end gap-2.5 pt-2 border-t border-slate-100">
+        <div className="flex justify-end gap-2.5 pt-2 border-t border-[#EAE3E5]">
           <Button type="button" variant="outline" size="sm" onClick={onClose}>
             Cancel
           </Button>

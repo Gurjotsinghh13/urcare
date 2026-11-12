@@ -2,13 +2,9 @@
 
 import * as React from 'react';
 import { 
-  Settings, 
   Save, 
   ShieldAlert, 
-  CheckCircle2, 
-  Sliders, 
-  Clock, 
-  Bed
+  CheckCircle2
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -80,7 +76,7 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+        <div className="w-7 h-7 border-2 border-[#E88770] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -89,9 +85,9 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-6 max-w-4xl">
-      <div className="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
-        <h1 className="text-xl font-bold text-slate-900 tracking-tight">Facility Settings & Clinical Protocols</h1>
-        <p className="text-xs text-slate-500 mt-1">
+      <div className="bg-white p-5 rounded-lg border border-[#EAE3E5]">
+        <h1 className="text-xl font-bold text-[#202124] tracking-tight">Facility Settings & Clinical Protocols</h1>
+        <p className="text-xs text-[#6B7280] mt-1">
           Configure quarantine operational limits, clinical fever threshold, and discharge authorization policies.
         </p>
       </div>
@@ -99,10 +95,10 @@ export default function SettingsPage() {
       {message && (
         <div className={`p-4 rounded-lg text-xs font-medium border flex items-center gap-2 ${
           message.type === 'success' 
-            ? 'bg-emerald-50 text-emerald-800 border-emerald-200' 
-            : 'bg-red-50 text-red-800 border-red-200'
+            ? 'bg-[#F0F7F4] text-[#27805B] border-[#D1E7DD]' 
+            : 'bg-[#FDF2F2] text-[#C04444] border-[#F8D7DA]'
         }`}>
-          {message.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <ShieldAlert className="w-4 h-4 text-red-600" />}
+          {message.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-[#27805B]" /> : <ShieldAlert className="w-4 h-4 text-[#C04444]" />}
           <span>{message.text}</span>
         </div>
       )}
@@ -112,7 +108,7 @@ export default function SettingsPage() {
         <Card>
           <CardHeader>
             <CardTitle>Clinical Thresholds & Criteria</CardTitle>
-            <span className="text-xs text-slate-500">Configured based on Chief Medical Officer directive</span>
+            <span className="text-xs text-[#6B7280]">Configured based on Chief Medical Officer directive</span>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -139,20 +135,20 @@ export default function SettingsPage() {
               </div>
             </div>
 
-            <div className="pt-3 border-t border-slate-100">
+            <div className="pt-3 border-t border-[#EAE3E5]">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={requireApproval}
                   onChange={(e) => setRequireApproval(e.target.checked)}
                   disabled={!canEdit}
-                  className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 mt-0.5"
+                  className="rounded border-[#EAE3E5] text-[#E88770] focus:ring-[#E88770] mt-0.5"
                 />
                 <div>
-                  <span className="text-xs font-semibold text-slate-900">
+                  <span className="text-xs font-semibold text-[#202124]">
                     Require Attending Physician Discharge Approval
                   </span>
-                  <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
+                  <p className="text-[11px] text-[#6B7280] leading-relaxed mt-0.5">
                     When enabled, after 3 fever-free days, a patient requires explicit sign-off from Dr. Vance before Administrator final discharge can release the bed.
                   </p>
                 </div>
@@ -190,8 +186,8 @@ export default function SettingsPage() {
               </div>
             </div>
 
-            <div className="p-3 bg-slate-50 border border-slate-200 rounded-md text-xs text-slate-600">
-              <span className="font-semibold text-slate-800">Minimum Sample Benchmark:</span> 20 completed patient outcomes required before statistical success rate is considered reliable.
+            <div className="p-3 bg-[#FAF8F8] border border-[#EAE3E5] rounded-md text-xs text-[#6B7280]">
+              <span className="font-semibold text-[#202124]">Minimum Sample Benchmark:</span> 20 completed patient outcomes required before statistical success rate is considered reliable.
             </div>
           </CardContent>
         </Card>

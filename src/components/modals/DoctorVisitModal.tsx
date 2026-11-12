@@ -94,25 +94,25 @@ export function DoctorVisitModal({
         )}
 
         {/* Patient & Vitals Summary */}
-        <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between">
+        <div className="p-3.5 bg-[#FAF8F8] border border-[#EAE3E5] rounded-lg flex items-center justify-between">
           <div>
-            <div className="text-xs text-slate-500">Patient:</div>
-            <div className="text-sm font-semibold text-slate-900">
+            <div className="text-xs text-[#6B7280]">Patient:</div>
+            <div className="text-sm font-semibold text-[#202124]">
               {patientName} {bedNumber ? `(Bed ${bedNumber})` : ''}
             </div>
           </div>
 
           <div>
-            <div className="text-xs text-slate-500 text-right">Today’s Vitals:</div>
+            <div className="text-xs text-[#6B7280] text-right">Today’s Vitals:</div>
             {hasTemperature ? (
-              <div className="flex items-center gap-1.5 text-sm font-semibold text-slate-900">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <div className="flex items-center gap-1.5 text-sm font-semibold text-[#202124]">
+                <CheckCircle2 className="w-4 h-4 text-[#27805B]" />
                 <span>{todayTemperature.toFixed(1)}°C</span>
-                {nurseName && <span className="text-xs font-normal text-slate-500">by {nurseName}</span>}
+                {nurseName && <span className="text-xs font-normal text-[#6B7280]">by {nurseName}</span>}
               </div>
             ) : (
-              <div className="flex items-center gap-1 text-xs font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                <AlertCircle className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-1 text-xs font-medium text-[#B7791F] bg-[#FAF8F8] px-2 py-0.5 rounded border border-[#EAE3E5]">
+                <AlertCircle className="w-3.5 h-3.5 text-[#B7791F]" />
                 <span>Pending Temperature</span>
               </div>
             )}
@@ -120,14 +120,14 @@ export function DoctorVisitModal({
         </div>
 
         {!hasTemperature && (
-          <div className="p-3 bg-amber-50 border border-amber-200 rounded-md text-xs text-amber-800 leading-relaxed">
-            <span className="font-semibold">Workflow Rule:</span> Routine doctor visits require today’s temperature measurement to be logged first by nursing staff. Please request nurse reading before completing visit.
+          <div className="p-3 bg-[#FAF8F8] border border-[#EAE3E5] rounded-md text-xs text-[#B7791F] leading-relaxed">
+            <span className="font-semibold text-[#202124]">Workflow Rule:</span> Routine doctor visits require today’s temperature measurement to be logged first by nursing staff. Please request nurse reading before completing visit.
           </div>
         )}
 
         {/* Clinical Observations */}
         <div className="space-y-1.5">
-          <label className="block text-xs font-medium text-slate-700">
+          <label className="block text-xs font-medium text-[#202124]">
             Clinical Observations & System Review *
           </label>
           <textarea
@@ -135,7 +135,7 @@ export function DoctorVisitModal({
             value={observations}
             onChange={(e) => setObservations(e.target.value)}
             placeholder="e.g. Patient alert and oriented. Bilateral lung fields clear. Respiration unlabored. Afebrile."
-            className="w-full rounded-md border border-slate-300 p-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-md border border-[#EAE3E5] p-2.5 text-xs text-[#202124] focus:outline-none focus:border-[#E88770] focus:ring-1 focus:ring-[#E88770] transition-colors bg-white"
             required
             disabled={!hasTemperature}
           />
@@ -143,7 +143,7 @@ export function DoctorVisitModal({
 
         {/* Treatment Plan */}
         <div className="space-y-1.5">
-          <label className="block text-xs font-medium text-slate-700">
+          <label className="block text-xs font-medium text-[#202124]">
             Treatment Plan & Orders *
           </label>
           <textarea
@@ -151,7 +151,7 @@ export function DoctorVisitModal({
             value={treatmentPlan}
             onChange={(e) => setTreatmentPlan(e.target.value)}
             placeholder="e.g. Continue hydration, maintenance oral therapy, step-down monitoring."
-            className="w-full rounded-md border border-slate-300 p-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-md border border-[#EAE3E5] p-2.5 text-xs text-[#202124] focus:outline-none focus:border-[#E88770] focus:ring-1 focus:ring-[#E88770] transition-colors bg-white"
             required
             disabled={!hasTemperature}
           />
@@ -159,7 +159,7 @@ export function DoctorVisitModal({
 
         {/* Follow-up */}
         <div className="space-y-1.5">
-          <label className="block text-xs font-medium text-slate-700">
+          <label className="block text-xs font-medium text-[#202124]">
             Follow-up & Nursing Instructions (Optional)
           </label>
           <Input
@@ -170,7 +170,7 @@ export function DoctorVisitModal({
           />
         </div>
 
-        <div className="flex justify-end gap-2.5 pt-2 border-t border-slate-100">
+        <div className="flex justify-end gap-2.5 pt-2 border-t border-[#EAE3E5]">
           <Button type="button" variant="outline" size="sm" onClick={onClose}>
             Cancel
           </Button>

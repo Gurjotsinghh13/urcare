@@ -8,31 +8,31 @@ export function cn(...inputs: ClassValue[]) {
 export function getRoleBadgeColor(role?: string) {
   switch (role) {
     case 'admin':
-      return 'bg-purple-100 text-purple-800 border-purple-200';
+      return 'bg-[#FCEEF1] text-[#202124] border-[#EAE3E5]';
     case 'doctor':
-      return 'bg-blue-100 text-blue-800 border-blue-200';
+      return 'bg-[#FDF2F0] text-[#D97660] border-[#F4C7D3]';
     case 'nurse':
-      return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+      return 'bg-[#F0F7F4] text-[#27805B] border-[#D1E7DD]';
     case 'manager':
-      return 'bg-amber-100 text-amber-800 border-amber-200';
+      return 'bg-[#FDF8F0] text-[#B7791F] border-[#F3E5D0]';
     default:
-      return 'bg-gray-100 text-gray-800 border-gray-200';
+      return 'bg-[#FAF8F8] text-[#6B7280] border-[#EAE3E5]';
   }
 }
 
 export function getStatusBadge(status: string) {
   switch (status) {
     case 'admitted':
-      return { label: 'Admitted', color: 'bg-blue-50 text-blue-700 border-blue-200' };
+      return { label: 'In Bed', color: 'bg-[#FAF8F8] text-[#202124] border-[#EAE3E5]' };
     case 'discharge_eligible':
-      return { label: 'Discharge Eligible', color: 'bg-amber-50 text-amber-700 border-amber-200' };
+      return { label: 'Eligible (3d)', color: 'bg-[#FDF8F0] text-[#B7791F] border-[#F3E5D0]' };
     case 'discharge_approved':
-      return { label: 'Doctor Approved', color: 'bg-indigo-50 text-indigo-700 border-indigo-200' };
+      return { label: 'Approved', color: 'bg-[#FDF2F0] text-[#D97660] border-[#F4C7D3]' };
     case 'discharged':
-      return { label: 'Discharged (Recovered)', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
+      return { label: 'Discharged', color: 'bg-[#F0F7F4] text-[#27805B] border-[#D1E7DD]' };
     case 'deceased':
-      return { label: 'Deceased', color: 'bg-red-50 text-red-700 border-red-200' };
+      return { label: 'Deceased', color: 'bg-[#FDF2F2] text-[#C04444] border-[#F8D7DA]' };
     default:
-      return { label: status, color: 'bg-gray-50 text-gray-700 border-gray-200' };
+      return { label: status, color: 'bg-[#FAF8F8] text-[#6B7280] border-[#EAE3E5]' };
   }
 }

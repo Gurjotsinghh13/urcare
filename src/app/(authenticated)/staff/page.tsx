@@ -2,20 +2,11 @@
 
 import * as React from 'react';
 import { 
-  UserCog, 
-  UserPlus, 
-  ShieldCheck, 
-  Stethoscope, 
-  Thermometer, 
-  Building2, 
-  Check, 
-  X,
-  AlertCircle
+  UserPlus
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import { Modal } from '@/components/ui/modal';
 import { getRoleBadgeColor } from '@/lib/utils';
 import { UserProfile, UserRole } from '@/lib/types';
@@ -100,57 +91,57 @@ export default function StaffPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white p-5 rounded-lg border border-[#EAE3E5] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Staff Governance & Role-Based Access Control</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-xl font-bold text-[#202124] tracking-tight">Staff Governance & Permissions</h1>
+          <p className="text-xs text-[#6B7280] mt-1">
             Manage clinical and operational user credentials, role permissions, and access status.
           </p>
         </div>
         <Button size="sm" onClick={() => setShowAddModal(true)} className="gap-1.5">
-          <UserPlus className="w-4 h-4" />
+          <UserPlus className="w-3.5 h-3.5" />
           Add Staff Member
         </Button>
       </div>
 
       {/* Staff Table */}
-      <Card>
+      <Card className="overflow-hidden">
         <CardHeader>
           <CardTitle>Authorized Personnel Roster</CardTitle>
-          <span className="text-xs text-slate-500">{staff.length} registered accounts</span>
+          <span className="text-xs text-[#6B7280]">{staff.length} registered accounts</span>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-200 text-slate-400 font-bold uppercase text-[10px]">
-                  <th className="py-2.5 px-3">Name</th>
-                  <th className="py-2.5 px-3">Email Address</th>
-                  <th className="py-2.5 px-3">Role</th>
-                  <th className="py-2.5 px-3">Phone</th>
-                  <th className="py-2.5 px-3">Status</th>
-                  <th className="py-2.5 px-3 text-right">Action</th>
+                <tr className="border-b border-[#EAE3E5] bg-[#FAF8F8] text-[#6B7280] font-semibold uppercase text-[10px]">
+                  <th className="py-2.5 px-4">Name</th>
+                  <th className="py-2.5 px-4">Email Address</th>
+                  <th className="py-2.5 px-4">Role</th>
+                  <th className="py-2.5 px-4">Phone</th>
+                  <th className="py-2.5 px-4">Status</th>
+                  <th className="py-2.5 px-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-[#EAE3E5]/60">
                 {staff.map((u) => (
-                  <tr key={u.id} className="hover:bg-slate-50">
-                    <td className="py-3 px-3 font-semibold text-slate-900">{u.full_name}</td>
-                    <td className="py-3 px-3 text-slate-600 font-mono text-[11px]">{u.email}</td>
-                    <td className="py-3 px-3">
+                  <tr key={u.id} className="hover:bg-[#FAF8F8]/60 transition-colors">
+                    <td className="py-3 px-4 font-semibold text-[#202124]">{u.full_name}</td>
+                    <td className="py-3 px-4 text-[#6B7280] font-mono text-[11px]">{u.email}</td>
+                    <td className="py-3 px-4">
                       <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded border ${getRoleBadgeColor(u.role)}`}>
                         {u.role}
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-slate-500">{u.phone || '—'}</td>
-                    <td className="py-3 px-3">
-                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
-                        u.is_active ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-red-50 text-red-700 border-red-200'
+                    <td className="py-3 px-4 text-[#6B7280]">{u.phone || '—'}</td>
+                    <td className="py-3 px-4">
+                      <span className={`text-[10px] font-medium px-2 py-0.5 rounded border ${
+                        u.is_active ? 'bg-[#F0F7F4] text-[#27805B] border-[#D1E7DD]' : 'bg-[#FDF2F2] text-[#C04444] border-[#F8D7DA]'
                       }`}>
                         {u.is_active ? 'Active' : 'Deactivated'}
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-right">
+                    <td className="py-3 px-4 text-right">
                       <Button
                         size="sm"
                         variant={u.is_active ? 'outline' : 'primary'}
@@ -177,7 +168,7 @@ export default function StaffPage() {
       >
         <form onSubmit={handleCreateStaff} className="space-y-4">
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md text-xs text-red-700 font-medium">
+            <div className="p-3 bg-[#FDF2F2] border border-[#F8D7DA] rounded-md text-xs text-[#C04444] font-medium">
               {error}
             </div>
           )}
@@ -200,11 +191,11 @@ export default function StaffPage() {
           />
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-slate-700">Role & System Permissions *</label>
+            <label className="block text-xs font-medium text-[#202124]">Role & System Permissions *</label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value as any)}
-              className="w-full h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full h-9 rounded-md border border-[#EAE3E5] bg-white px-3 py-1 text-sm text-[#202124] focus:outline-none focus:border-[#E88770]"
             >
               <option value="nurse">Nurse (Record vitals, view patients)</option>
               <option value="doctor">Doctor (Clinical rounds, treatment notes, approve discharge readiness)</option>
@@ -220,7 +211,7 @@ export default function StaffPage() {
             onChange={(e) => setPhone(e.target.value)}
           />
 
-          <div className="flex justify-end gap-2.5 pt-2 border-t border-slate-100">
+          <div className="flex justify-end gap-2.5 pt-2 border-t border-[#EAE3E5]">
             <Button type="button" variant="outline" size="sm" onClick={() => setShowAddModal(false)}>
               Cancel
             </Button>

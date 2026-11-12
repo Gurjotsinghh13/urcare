@@ -4,15 +4,11 @@ import * as React from 'react';
 import Link from 'next/link';
 import { 
   Stethoscope, 
-  CheckCircle2, 
-  Clock, 
   Lock, 
   Flame, 
-  ArrowRight,
-  Eye,
-  UserCheck
+  Eye
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { DoctorVisitModal } from '@/components/modals/DoctorVisitModal';
@@ -50,7 +46,7 @@ export default function DoctorRoundsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+        <div className="w-7 h-7 border-2 border-[#E88770] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -60,15 +56,15 @@ export default function DoctorRoundsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-lg border border-[#EAE3E5]">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Physician Clinical Rounds Station</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-xl font-bold text-[#202124] tracking-tight">Physician Clinical Rounds Station</h1>
+          <p className="text-xs text-[#6B7280] mt-1">
             Standard operating procedure: Routine morning physician rounds require nurse temperature verification first.
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="info">{readyForRounds.length} Ready to Visit</Badge>
+          <Badge variant="accent">{readyForRounds.length} Ready to Visit</Badge>
           <Badge variant="warning">{waitingForVitals.length} Locked (Awaiting Nurse)</Badge>
         </div>
       </div>
@@ -79,10 +75,10 @@ export default function DoctorRoundsPage() {
         <div className="space-y-3">
           <div className="flex items-center justify-between px-1">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
-              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Ready for Doctor Rounds</h3>
+              <span className="w-2 h-2 rounded-full bg-[#E88770]" />
+              <h3 className="text-xs font-bold text-[#202124] uppercase tracking-wider">Ready for Doctor Rounds</h3>
             </div>
-            <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
+            <span className="text-xs font-semibold text-[#E88770] bg-[#FCEEF1] px-2 py-0.5 rounded border border-[#F4C7D3]">
               {readyForRounds.length}
             </span>
           </div>
@@ -90,50 +86,50 @@ export default function DoctorRoundsPage() {
           <div className="space-y-3">
             {readyForRounds.length === 0 ? (
               <Card>
-                <CardContent className="p-8 text-center text-xs text-slate-400">
+                <CardContent className="p-8 text-center text-xs text-[#6B7280]">
                   No patients awaiting review.
                 </CardContent>
               </Card>
             ) : (
               readyForRounds.map((item: any) => (
-                <Card key={item.patient.id} className="border-l-4 border-l-blue-600 hover:shadow-md transition-shadow">
+                <Card key={item.patient.id} className="hover:border-[#F4C7D3] transition-colors">
                   <CardContent className="p-4 space-y-3">
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-bold text-sm text-slate-900">{item.patient.full_name}</span>
-                          <span className="text-[11px] font-semibold bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded">
+                          <span className="font-bold text-sm text-[#202124]">{item.patient.full_name}</span>
+                          <span className="text-[11px] font-semibold bg-[#FAF8F8] text-[#202124] px-1.5 py-0.5 rounded border border-[#EAE3E5]">
                             Bed {item.patient.bed_number}
                           </span>
                         </div>
-                        <div className="text-[11px] text-slate-400 font-mono mt-0.5">{item.patient.patient_code}</div>
+                        <div className="text-[11px] text-[#6B7280] font-mono mt-0.5">{item.patient.patient_code}</div>
                       </div>
 
                       <div className="text-right">
-                        <div className={`text-sm font-bold ${item.isFever ? 'text-red-600' : 'text-slate-900'}`}>
+                        <div className={`text-sm font-bold ${item.isFever ? 'text-[#C04444]' : 'text-[#202124]'}`}>
                           {item.todayTemp?.temp_celsius.toFixed(1)}°C
                         </div>
-                        <div className="text-[10px] text-slate-400">
+                        <div className="text-[10px] text-[#6B7280]">
                           {item.todayTemp?.measurement_time ? item.todayTemp.measurement_time.substring(11, 16) : ''}
                         </div>
                       </div>
                     </div>
 
                     {item.isFever && (
-                      <div className="p-2 bg-red-50 border border-red-200 rounded text-[11px] text-red-700 font-semibold flex items-center gap-1.5">
-                        <Flame className="w-3.5 h-3.5 text-red-600" />
+                      <div className="p-2 bg-[#FDF2F2] border border-[#F8D7DA] rounded text-[11px] text-[#C04444] font-semibold flex items-center gap-1.5">
+                        <Flame className="w-3.5 h-3.5 text-[#C04444]" />
                         <span>Fever Alert: Evaluate clinical symptoms</span>
                       </div>
                     )}
 
-                    <div className="text-[11px] text-slate-500">
-                      Streak: <span className="font-semibold text-slate-800">{item.streak} / 3 days fever-free</span>
+                    <div className="text-[11px] text-[#6B7280]">
+                      Streak: <span className="font-semibold text-[#202124]">{item.streak} / 3 days fever-free</span>
                     </div>
 
-                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <div className="pt-2 border-t border-[#EAE3E5]/60 flex items-center justify-between">
                       <Link 
                         href={`/patients/${item.patient.id}`}
-                        className="text-[11px] text-slate-500 hover:text-slate-900 flex items-center gap-1"
+                        className="text-[11px] text-[#6B7280] hover:text-[#202124] flex items-center gap-1"
                       >
                         <Eye className="w-3 h-3" /> Chart
                       </Link>
@@ -157,10 +153,10 @@ export default function DoctorRoundsPage() {
         <div className="space-y-3">
           <div className="flex items-center justify-between px-1">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Waiting for Nurse Vitals</h3>
+              <span className="w-2 h-2 rounded-full bg-[#B7791F]" />
+              <h3 className="text-xs font-bold text-[#202124] uppercase tracking-wider">Waiting for Nurse Vitals</h3>
             </div>
-            <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+            <span className="text-xs font-semibold text-[#B7791F] bg-[#FDF8F0] px-2 py-0.5 rounded border border-[#F3E5D0]">
               {waitingForVitals.length} Locked
             </span>
           </div>
@@ -168,35 +164,35 @@ export default function DoctorRoundsPage() {
           <div className="space-y-3">
             {waitingForVitals.length === 0 ? (
               <Card>
-                <CardContent className="p-8 text-center text-xs text-slate-400">
-                  All patients have had their temperature logged!
+                <CardContent className="p-8 text-center text-xs text-[#6B7280]">
+                  All patients have had their temperature logged.
                 </CardContent>
               </Card>
             ) : (
               waitingForVitals.map((item: any) => (
-                <Card key={item.patient.id} className="border-slate-200 bg-slate-50/50">
+                <Card key={item.patient.id} className="bg-[#FAF8F8]">
                   <CardContent className="p-4 space-y-2.5">
                     <div className="flex items-start justify-between">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-xs text-slate-800">{item.patient.full_name}</span>
-                          <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.2 rounded font-medium">
+                          <span className="font-semibold text-xs text-[#202124]">{item.patient.full_name}</span>
+                          <span className="text-[10px] bg-white text-[#202124] px-1.5 py-0.2 rounded border border-[#EAE3E5]">
                             Bed {item.patient.bed_number}
                           </span>
                         </div>
-                        <div className="text-[11px] text-slate-400 font-mono mt-0.5">{item.patient.patient_code}</div>
+                        <div className="text-[11px] text-[#6B7280] font-mono mt-0.5">{item.patient.patient_code}</div>
                       </div>
-                      <div className="p-1 rounded bg-amber-100 text-amber-700" title="Locked: Needs Nurse Vitals">
+                      <div className="p-1 rounded bg-[#FDF8F0] text-[#B7791F]" title="Locked: Needs Nurse Vitals">
                         <Lock className="w-3.5 h-3.5" />
                       </div>
                     </div>
 
-                    <p className="text-[11px] text-amber-800 bg-amber-50 p-2 rounded border border-amber-200">
+                    <p className="text-[11px] text-[#B7791F] bg-white p-2 rounded border border-[#F3E5D0]">
                       Doctor visit locked until nurse documents morning temperature.
                     </p>
 
                     <div className="flex justify-between items-center text-[11px] pt-1">
-                      <Link href={`/patients/${item.patient.id}`} className="text-slate-500 hover:text-slate-800 flex items-center gap-1">
+                      <Link href={`/patients/${item.patient.id}`} className="text-[#6B7280] hover:text-[#202124] flex items-center gap-1">
                         <Eye className="w-3 h-3" /> View History
                       </Link>
                       <Button size="sm" variant="outline" disabled className="text-xs opacity-50">
@@ -214,10 +210,10 @@ export default function DoctorRoundsPage() {
         <div className="space-y-3">
           <div className="flex items-center justify-between px-1">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600" />
-              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Completed Rounds</h3>
+              <span className="w-2 h-2 rounded-full bg-[#27805B]" />
+              <h3 className="text-xs font-bold text-[#202124] uppercase tracking-wider">Completed Rounds</h3>
             </div>
-            <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+            <span className="text-xs font-semibold text-[#27805B] bg-[#F0F7F4] px-2 py-0.5 rounded border border-[#D1E7DD]">
               {completedRounds.length} Done
             </span>
           </div>
@@ -225,33 +221,33 @@ export default function DoctorRoundsPage() {
           <div className="space-y-3">
             {completedRounds.length === 0 ? (
               <Card>
-                <CardContent className="p-8 text-center text-xs text-slate-400">
+                <CardContent className="p-8 text-center text-xs text-[#6B7280]">
                   No rounds completed yet today.
                 </CardContent>
               </Card>
             ) : (
               completedRounds.map((item: any) => (
-                <Card key={item.patient.id} className="border-l-4 border-l-emerald-600">
+                <Card key={item.patient.id}>
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-xs text-slate-900">{item.patient.full_name}</span>
-                        <span className="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-medium">
+                        <span className="font-semibold text-xs text-[#202124]">{item.patient.full_name}</span>
+                        <span className="text-[10px] bg-[#FAF8F8] text-[#202124] px-1.5 py-0.5 rounded border border-[#EAE3E5]">
                           Bed {item.patient.bed_number}
                         </span>
                       </div>
-                      <span className="text-xs font-semibold text-slate-700">
+                      <span className="text-xs font-semibold text-[#202124]">
                         {item.todayTemp?.temp_celsius.toFixed(1)}°C
                       </span>
                     </div>
 
-                    <div className="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-100 italic">
+                    <div className="text-[11px] text-[#6B7280] bg-[#FAF8F8] p-2 rounded border border-[#EAE3E5] italic">
                       &ldquo;{item.todayVisit?.treatment_plan || 'Observations filed'}&rdquo;
                     </div>
 
-                    <div className="flex justify-between items-center text-[10px] text-slate-400 pt-1">
+                    <div className="flex justify-between items-center text-[10px] text-[#6B7280] pt-1">
                       <span>Seen by {item.todayVisit?.doctor_name || 'Dr. Vance'}</span>
-                      <Link href={`/patients/${item.patient.id}`} className="text-blue-600 hover:underline">
+                      <Link href={`/patients/${item.patient.id}`} className="text-[#E88770] hover:underline font-medium">
                         View Visit Note →
                       </Link>
                     </div>
