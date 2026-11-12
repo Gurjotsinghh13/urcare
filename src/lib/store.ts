@@ -91,6 +91,7 @@ export function resetStore(): StoreState {
 
 // Data Access API
 export const StoreAPI = {
+  getStore: () => getStore(),
   // Profiles & Auth
   getUsers: () => getStore().users,
   getUserById: (id: string) => getStore().users.find((u) => u.id === id),
