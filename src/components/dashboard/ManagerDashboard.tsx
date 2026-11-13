@@ -23,7 +23,7 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
   const handleExportCSV = () => {
     const rows = [
       ['Metric', 'Value', 'Benchmark / Target'],
-      ['Total Facility Capacity', `${occupancy.totalCapacity} Beds`, '74 Fixed'],
+      ['Total Facility Capacity', `${occupancy.totalCapacity} Beds`, '80 Fixed'],
       ['Currently Occupied Beds', `${occupancy.occupied} Beds`, '-'],
       ['Available Beds', `${occupancy.available} Beds`, '-'],
       ['Occupancy Rate', `${occupancy.occupancyRate}%`, '< 90% Safe Target'],
@@ -185,15 +185,15 @@ export function ManagerDashboard({ data, onRefresh }: ManagerDashboardProps) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Quarantine Bed Distribution (74 Beds)</CardTitle>
-            <span className="text-xs text-[#6B7280]">Capacity breakdown by ward unit</span>
+            <CardTitle>Quarantine Bed Distribution (80 Beds)</CardTitle>
+            <span className="text-xs text-[#6B7280]">Capacity breakdown by ward unit (20 beds per ward)</span>
           </CardHeader>
           <CardContent className="space-y-2.5">
             {[
               { ward: 'Ward A (Respiratory)', range: 'Beds 1 - 20', total: 20, occupied: 7 },
               { ward: 'Ward B (Observation)', range: 'Beds 21 - 40', total: 20, occupied: 5 },
               { ward: 'Ward C (Step-down)', range: 'Beds 41 - 60', total: 20, occupied: 3 },
-              { ward: 'Ward D (Isolation)', range: 'Beds 61 - 74', total: 14, occupied: 1 },
+              { ward: 'Ward D (Isolation)', range: 'Beds 61 - 80', total: 20, occupied: 3 },
             ].map((w) => (
               <div key={w.ward} className="p-3 rounded-md border border-[#EAE3E5] bg-[#FAF8F8] flex items-center justify-between text-xs">
                 <div>

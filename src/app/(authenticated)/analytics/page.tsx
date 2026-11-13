@@ -274,7 +274,7 @@ export default function AnalyticsPage() {
       <Card>
         <CardHeader>
           <CardTitle>Facility Bed Occupancy Rate (%)</CardTitle>
-          <span className="text-xs text-[#6B7280]">Utilization percentage against 74 maximum bed capacity</span>
+          <span className="text-xs text-[#6B7280]">Utilization percentage against 80 maximum bed capacity</span>
         </CardHeader>
         <CardContent>
           <div className="h-44 w-full">

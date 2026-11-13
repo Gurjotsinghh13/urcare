@@ -16,7 +16,7 @@ export default function SettingsPage() {
   const [loading, setLoading] = React.useState(true);
   const [feverThreshold, setFeverThreshold] = React.useState('38.0');
   const [requireApproval, setRequireApproval] = React.useState(true);
-  const [capacity, setCapacity] = React.useState('74');
+  const [capacity, setCapacity] = React.useState('80');
   const [isSaving, setIsSaving] = React.useState(false);
   const [message, setMessage] = React.useState<{ text: string; type: 'success' | 'error' } | null>(null);
 
@@ -171,7 +171,7 @@ export default function SettingsPage() {
                   value={capacity}
                   onChange={(e) => setCapacity(e.target.value)}
                   disabled={currentUser?.role !== 'admin'}
-                  helperText="Maximum allowed quarantine beds (Default: 74)."
+                  helperText="Maximum allowed quarantine beds (Default: 80)."
                   required
                 />
               </div>

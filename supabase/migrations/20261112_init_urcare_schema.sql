@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS public.profiles (
 CREATE TABLE IF NOT EXISTS public.facility_settings (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     facility_name TEXT NOT NULL DEFAULT 'URCARE Quarantine Center',
-    capacity INTEGER NOT NULL DEFAULT 74 CHECK (capacity > 0),
+    capacity INTEGER NOT NULL DEFAULT 80 CHECK (capacity > 0),
     fever_threshold NUMERIC(4, 2) NOT NULL DEFAULT 38.00,
     require_doctor_approval BOOLEAN NOT NULL DEFAULT true,
     days_required_fever_free INTEGER NOT NULL DEFAULT 3,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS public.facility_settings (
 -- 5. BEDS TABLE
 CREATE TABLE IF NOT EXISTS public.beds (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    bed_number INTEGER NOT NULL UNIQUE CHECK (bed_number BETWEEN 1 AND 74),
+    bed_number INTEGER NOT NULL UNIQUE CHECK (bed_number BETWEEN 1 AND 80),
     ward TEXT NOT NULL DEFAULT 'Ward 1',
     status TEXT NOT NULL DEFAULT 'available' CHECK (status IN ('available', 'occupied', 'maintenance')),
     current_patient_id UUID,

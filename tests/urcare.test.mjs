@@ -48,16 +48,16 @@ test('1. Four demo accounts exist with correct credentials and roles', () => {
   assert.equal(manager.email, 'manager@urcare.demo');
 });
 
-test('2. Facility capacity is exactly 74 beds with unique bed numbers', () => {
+test('2. Facility capacity is exactly 80 beds with unique bed numbers', () => {
   resetStore();
   const beds = StoreAPI.getBeds();
   assert.equal(beds.length, TOTAL_BEDS);
-  assert.equal(beds.length, 74);
+  assert.equal(beds.length, 80);
 
   const bedNumbers = beds.map((b) => b.bed_number);
-  assert.equal(new Set(bedNumbers).size, 74);
+  assert.equal(new Set(bedNumbers).size, 80);
   assert.equal(Math.min(...bedNumbers), 1);
-  assert.equal(Math.max(...bedNumbers), 74);
+  assert.equal(Math.max(...bedNumbers), 80);
 });
 
 test('3. Temperature validation: range error, extreme warning, and fever flag', () => {
@@ -240,11 +240,11 @@ test('10. Recovery Rate and Mortality Rate calculation matches formula and bench
   assert.equal(stats.benchmarkWarning, true);
 });
 
-test('11. Maximum occupancy cannot exceed 74 beds', () => {
-  const checkFull = canAdmitPatient(74, 74);
+test('11. Maximum occupancy cannot exceed 80 beds', () => {
+  const checkFull = canAdmitPatient(80, 80);
   assert.equal(checkFull.allowed, false);
   assert.match(checkFull.reason, /maximum quarantine capacity/);
 
-  const checkAvailable = canAdmitPatient(73, 74);
+  const checkAvailable = canAdmitPatient(79, 80);
   assert.equal(checkAvailable.allowed, true);
 });

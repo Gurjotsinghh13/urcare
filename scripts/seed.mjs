@@ -56,7 +56,7 @@ async function seed() {
   if (!supabaseUrl || !serviceRoleKey) {
     console.warn('⚠️  NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are not defined.');
     console.warn('ℹ️  The application includes an in-memory persistent store initialized with');
-    console.warn('   all 74 beds, 4 demo accounts, and 20 clinical scenarios for local development.');
+    console.warn('   all 80 beds, 4 demo accounts, and 20 clinical scenarios for local development.');
     console.warn('👉 When connecting to your hosted Supabase instance, set credentials in .env.local and re-run.');
     process.exit(0);
   }
@@ -131,10 +131,10 @@ async function seed() {
     }
   }
 
-  // 2. Provision 74 Facility Beds
-  console.log('\n--- 2. Provisioning 74 Facility Beds ---');
+  // 2. Provision 80 Facility Beds
+  console.log('\n--- 2. Provisioning 80 Facility Beds (20 per ward) ---');
   const beds = [];
-  for (let i = 1; i <= 74; i++) {
+  for (let i = 1; i <= 80; i++) {
     const ward = i <= 20 ? 'Ward A (Respiratory)' : i <= 40 ? 'Ward B (Observation)' : i <= 60 ? 'Ward C (Step-down)' : 'Ward D (Isolation)';
     beds.push({
       bed_number: i,
@@ -148,14 +148,14 @@ async function seed() {
   if (bedError) {
     console.warn('Note on beds seeding:', bedError.message);
   } else {
-    console.log('✓ 74 beds confirmed in database.');
+    console.log('✓ 80 beds confirmed in database.');
   }
 
   // 3. Facility Settings
   console.log('\n--- 3. Provisioning Facility Settings ---');
   const { error: settingsError } = await supabase.from('facility_settings').upsert({
     facility_name: 'URCARE Quarantine Facility',
-    capacity: 74,
+    capacity: 80,
     fever_threshold: 38.0,
     require_doctor_approval: true,
     days_required_fever_free: 3,

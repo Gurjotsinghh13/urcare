@@ -52,7 +52,7 @@ export default function DashboardPage() {
       const res = await fetch('/api/patients');
       // beds available:
       const bedsList: Bed[] = [];
-      for (let i = 1; i <= 74; i++) {
+      for (let i = 1; i <= 80; i++) {
         bedsList.push({
           id: `bed-${i}`,
           bed_number: i,

@@ -80,7 +80,7 @@ export function generateSeedData() {
     updated_at: new Date().toISOString(),
   };
 
-  // 2. 74 Facility Beds distributed across 4 quarantine wards
+  // 2. 80 Facility Beds distributed across 4 quarantine wards (20 beds per ward)
   const beds: Bed[] = [];
   for (let i = 1; i <= TOTAL_BEDS; i++) {
     const ward = i <= 20 ? 'Ward A (Respiratory)' : i <= 40 ? 'Ward B (Observation)' : i <= 60 ? 'Ward C (Step-down)' : 'Ward D (Isolation)';

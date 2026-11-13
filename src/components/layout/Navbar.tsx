@@ -74,7 +74,7 @@ export function Navbar({ user, onToggleMobileMenu }: NavbarProps) {
         <span className="text-[#EAE3E5] hidden sm:inline">|</span>
         <div className="hidden sm:flex items-center gap-1.5 text-xs text-[#202124] bg-[#FAF8F8] px-2.5 py-1 rounded-md border border-[#EAE3E5]">
           <span className="w-2 h-2 rounded-full bg-[#27805B]" />
-          <span>74 Bed Capacity</span>
+          <span>80 Bed Capacity</span>
         </div>
       </div>
 

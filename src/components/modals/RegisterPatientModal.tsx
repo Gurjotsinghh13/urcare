@@ -137,7 +137,7 @@ export function RegisterPatientModal({
             </label>
             {availableBeds.length === 0 ? (
               <div className="p-2 text-xs text-[#C04444] font-medium bg-[#FAF8F8] rounded border border-[#EAE3E5]">
-                Facility full (74/74 beds occupied)
+                Facility full (80/80 beds occupied)
               </div>
             ) : (
               <select

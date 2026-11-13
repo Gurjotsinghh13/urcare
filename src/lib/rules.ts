@@ -1,7 +1,7 @@
 // URCARE Core Business Rules & Clinical Calculations
 // Pure functions for high testability and rock-solid reliability
 
-export const TOTAL_BEDS = 74;
+export const TOTAL_BEDS = 80;
 export const DAYS_REQUIRED_FEVER_FREE = 3;
 export const BENCHMARK_RECOVERY_RATE = 85.0; // 85% expected recovery
 export const BENCHMARK_MORTALITY_RATE = 15.0; // 15% expected mortality
